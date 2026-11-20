@@ -11,31 +11,36 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if ($nama && filter_var($email, FILTER_VALIDATE_EMAIL) && $telepon && $pesan) {
         $pesanSukses = true;
     } else {
-        $error = "Mohon periksa kembali data yang diisi.";
+        $error = "Mohon periksa kembali data Anda. Pastikan semua kolom telah diisi dengan benar.";
     }
 }
 include "header.php";
 ?>
-<section class="page-banner"><div class="container"><span class="eyebrow">KONSULTASI</span><h1>Ajukan pertanyaan</h1><p>Isi formulir berikut jika ingin meminta informasi seputar Hepatitis B.</p></div></section>
+<section class="page-banner"><div class="container"><span class="eyebrow">KONSULTASI</span><h1>Sampaikan Pertanyaan Anda</h1><p align="justify">Punya pertanyaan seputar Hepatitis B? Kami menyediakan formulir konsultasi sebagai sarana untuk menyampaikan pertanyaan dan meminta informasi. Silakan lengkapi formulir berikut agar Anda dapat memperoleh informasi edukatif yang bermanfaat untuk meningkatkan pemahaman mengenai Hepatitis B.</p>
+</div></section>
 <section class="container form-section">
-<div class="form-intro"><h2>Kami siap membantu memberikan informasi</h2><p>Formulir ini merupakan contoh fitur permintaan informasi untuk tugas website. Data tidak dikirim ke dokter dan tidak disimpan ke database.</p><div class="form-tip">Untuk keluhan kesehatan, silakan langsung menghubungi fasilitas kesehatan.</div></div>
+<div class="form-intro"><h2>Kami Siap Membantu Anda</h2>
+<p align="justify">Jangan ragu untuk mencari tahu lebih banyak tentang Hepatitis B. Tuliskan pertanyaan atau informasi yang ingin Anda ketahui melalui formulir berikut. Setiap pertanyaan merupakan langkah awal untuk meningkatkan kepedulian dan pemahaman terhadap kesehatan hati.</p>
+<div class="form-tip">Informasi dalam website ini bersifat edukatif dan bukan pengganti konsultasi medis. Untuk mendapatkan diagnosis, pemeriksaan, maupun pengobatan yang tepat, silakan kunjungi puskesmas, klinik, atau rumah sakit terdekat dan konsultasikan langsung dengan tenaga kesehatan.</div>
+</div>
 <div class="form-card">
 <?php if ($pesanSukses): ?>
     <div class="success-message">
-        <div class="email-notice"><strong>Permintaan konsultasi berhasil dikirim!</strong><br>Informasi atau jawaban selanjutnya akan disampaikan melalui email yang Anda cantumkan.</div>
+        <div class="email-notice"><strong>Formulir berhasil dikirim!</strong><br>Data dan pertanyaan Anda berhasil diproses oleh halaman website ini.</div>
         <h2>Terima kasih, <?php echo htmlspecialchars($nama); ?>!</h2>
-        <p>Data formulir berhasil diterima oleh halaman website ini. Untuk versi tugas ini, pengiriman email otomatis belum diaktifkan sehingga pengelola perlu mengirimkan balasan secara manual.</p>
-        <a class="btn" href="konsultasi.php">Isi formulir lagi</a>
+        <p>Terima kasih telah menggunakan layanan konsultasi ini. Untuk versi website ini, pengiriman email otomatis belum diaktifkan sehingga balasan atau informasi selanjutnya perlu disampaikan secara manual oleh pengelola.</p>
+        <a class="btn" href="konsultasi.php">Isi formulir kembali</a>
     </div>
 <?php else: ?>
     <?php if ($error): ?><div class="alert"><?php echo $error; ?></div><?php endif; ?>
     <form id="consultForm" method="POST" action="konsultasi.php" novalidate>
-        <label for="nama">Nama lengkap</label><input type="text" id="nama" name="nama" placeholder="Masukkan nama Anda" value="<?php echo htmlspecialchars($nama); ?>" required>
-        <label for="email">Email</label><input type="email" id="email" name="email" placeholder="nama@email.com" value="<?php echo htmlspecialchars($email); ?>" required>
-        <label for="telepon">Nomor telepon</label><input type="tel" id="telepon" name="telepon" placeholder="08xxxxxxxxxx" value="<?php echo htmlspecialchars($telepon); ?>" required>
-        <label for="pesan">Pesan atau pertanyaan</label><textarea id="pesan" name="pesan" rows="5" placeholder="Tuliskan pertanyaan Anda..." required><?php echo htmlspecialchars($pesan); ?></textarea>
+        <label for="nama">Nama lengkap</label>
+        <input type="text" id="nama" name="nama" placeholder="Masukkan nama lengkap Anda" value="<?php echo htmlspecialchars($nama); ?>" required />
+        <label for="email">Alamat email</label><input type="email" id="email" name="email" placeholder="Contoh: nama@email.com" value="<?php echo htmlspecialchars($email); ?>" required>
+        <label for="telepon">Nomor telepon</label><input type="tel" id="telepon" name="telepon" placeholder="Masukkan nomor telepon Anda" value="<?php echo htmlspecialchars($telepon); ?>" required>
+        <label for="pesan">Pesan atau pertanyaan</label><textarea id="pesan" name="pesan" rows="5" placeholder="Tuliskan pertanyaan atau informasi yang ingin Anda ketahui..." required><?php echo htmlspecialchars($pesan); ?></textarea>
         <p class="form-error" id="formError"></p>
-        <button class="btn submit-btn" type="submit">Kirim pertanyaan</button>
+        <button class="btn submit-btn" type="submit">Kirim Pertanyaan</button>
     </form>
 <?php endif; ?>
 </div>
